@@ -1,0 +1,341 @@
+<div class="detail-body">
+    <!-- =================== Campaign Detail =================== -->
+    <section class="gen-section nav-menu-section" id="detail">
+        <div class="gen-container gen-sub-container detail-container">
+            <div class="gen-wrapper">
+                <!-- ---------- Title ---------- -->
+                <div class="section-title detail-title">
+                    <h3>{{campaign.title}}</h3>
+                    <div class="status">
+                        <div class="campaign-status status-style fill-btn">{{campaign.status}}</div>
+                        <div class="received-status status-style border-btn">{{campaign.received}}</div>
+                    </div>
+                </div>
+                <!-- ---------- Detail - Image ---------- -->
+                <div class="section-content">
+                    <!-- ----- Image ----- -->
+                    <div class="detail-image-container">
+                        <div class="detail-img">
+                            <img src={{campaign.coverSrc}} alt="">
+                        </div>
+                        <div class="gallery-container">
+                            <div class="gallery-title">Đang Chuẩn Bị</div>
+                            <div class="prepare-gallery gallery">
+                                <img *ngFor="let image of images1" src={{image.imageSrc}} alt="">
+                            </div>
+                            <button (click)="GetImages(1)">Xem thêm</button>
+                        </div>
+
+                        <div class="gallery-container">
+                            <div class="gallery-title">Đang Tiến Hành</div>
+                            <div class="ready-gallery gallery">
+                                <img *ngFor="let image of images2" src={{image.imageSrc}} alt="">
+                            </div>
+                            <button>Xem thêm</button>
+                        </div>
+                        <div class="gallery-container">
+                            <div class="gallery-title">Đã Kết Thúc</div>
+                            <div class="end-gallery gallery">
+                                <img *ngFor="let image of images3" src={{image.imageSrc}} alt="">
+                            </div>
+                            <button>Xem thêm</button>
+                        </div>
+                    </div>
+
+                    <!-- ----- Detail ----- -->
+                    <div class="detail-details">
+                        <!-- Campaign Info -->
+                        <div class="detail-info">
+                            <h4 class="target">{{campaign.target}}</h4>
+                            <p class="detail-description detail-more">{{campaign.description}}</p>
+                            <p class="detail-timespan detail-more"><span>Thời hạn: </span>{{campaign.startDate}} -
+                                {{campaign.endDate}}</p>
+                            <p class="detail-address detail-more"><span>Địa chỉ: </span>{{campaign.address}}</p>
+                            <p class="detail-target-amount detail-more"><span>Chỉ tiêu: </span>{{campaign.targetAmount}}
+                                vnd</p>
+                        </div>
+                        <!-- USer Info -->
+                        <div class="detail-user">
+                            <div class="profile-wrapper">
+                                <img src={{campaign.organiserAva}} alt="" width="50" height="50">
+                            </div>
+                            <div class="user-name">
+                                <a href="#">{{campaign.organiserName}}</a>
+                                <p class="text-sm">
+                                    cùng với {{campaign.recipientName}}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Statistics -->
+                        <div class="pro-list">
+                            <div class="pro-card">
+                                <span>{{donatedTotal}}</span>
+                                <p>Đóng góp</p>
+                            </div>
+                            <div class="pro-card">
+                                <span>{{expensedTotal}}</span>
+                                <p>Chi tiêu</p>
+                            </div>
+                            <div class="pro-card">
+                                <span>{{transferedTotal}}</span>
+                                <p>Được chuyển</p>
+                            </div>
+                        </div>
+                        <!-- Participate - Donate -->
+                        <div class="detail-button">
+                            <div class="gen-main-btn fill-btn">
+                                <button (click)="UpdateCampaign(campaign)" class="fill-btn">Sửa thông tin</button>
+                            </div>
+                        </div>
+                        <!-- Recipient Review -->
+                        <div class="rev-section">
+
+                            <h2 class="title">Review From Recipient</h2>
+
+                            <div class="reviews">
+
+                                <div class="review">
+                                    <div class="head-review">
+                                        <img src={{campaign.recipientAva}} width="250px">
+                                    </div>
+                                    <div class="body-review">
+                                        <div class="name-review">{{campaign.recipientName}}</div>
+                                        <div class="rating">
+
+                                            <i class="bi bi-star star"></i>
+                                            <i class="bi bi-star star"></i>
+                                            <i class="bi bi-star star"></i>
+                                            <i class="bi bi-star star"></i>
+                                            <i class="bi bi-star star"></i>
+                                        </div>
+                                        <div class="desc-review">{{campaign.ratedContentByRecipient}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Tab -->
+                        <div class="tab-section">
+                            <div class="tab-container">
+                                <div class="tabs">
+                                    <button (click)="TabOnClick(0)" class="active">Donation</button>
+                                    <button (click)="TabOnClick(1)">Expense</button>
+                                    <button (click)="TabOnClick(2)">Rating</button>
+                                </div>
+                                <div class="tab-content">
+                                    <!-- Donation Table -->
+                                    <div class="active tab-content-div">
+                                        <!-- Filter Form -->
+                                        <div class="filter-container">
+                                            <form [formGroup]="donationSearchForm" (ngSubmit)="FilterDonationSubmit()"
+                                                class="form" action="">
+                                                <div class="information-form">
+                                                    <div class="column">
+                                                        <!-- Input Form -->
+                                                        <div class="input-box">
+                                                            <label>Donor: </label>
+                                                            <input formControlName="donor" type="text"
+                                                                placeholder="Enter donor id, name" required />
+                                                        </div>
+                                                        <!-- Drop down -->
+                                                        <div (click)="SortDropDown()" class="input-box dropdown">
+                                                            <label>Sắp xếp: </label>
+                                                            <input type="text" class="text-box" readonly
+                                                                value="Đóng góp tăng dần">
+                                                            <div class="option">
+                                                                <!-- <div *ngFor="let province of sharedService.Provinces" (click)="ChangeProvinceSearch(province)">{{province}}</div> -->
+                                                                <div (click)="ChangeOption('ascending')"
+                                                                    class="option-value">Đóng góp tăng dần</div>
+                                                                <div (click)="ChangeOption('decreasing')"
+                                                                    class="option-value">Đóng góp giảm dần</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Date Form -->
+                                                    <div class="column">
+                                                        <div class="input-box">
+                                                            <label>From Date: </label>
+                                                            <input formControlName="fromdate" id="startdate" type="date"
+                                                                placeholder="Enter start date" required />
+                                                        </div>
+                                                        <div class="input-box">
+                                                            <label>To Date: </label>
+                                                            <input formControlName="todate" id="enddate" type="date"
+                                                                placeholder="Enter end date" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Button Form -->
+                                                <div class="button-form">
+                                                    <button type="submit">Tìm</button>
+                                                    <button class="download" (click)="exportDonationFile()">Xuất
+                                                        Excel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="table-container">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Amount</th>
+                                                        <th>Donation Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let donation of donationList">
+                                                        <td><a href="#">{{donation.donorId}}</a></td>
+                                                        <td>{{donation.donorName}}</td>
+                                                        <td>{{donation.amount}}</td>
+                                                        <td>{{donation.donationDate}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div (click)="GetDonationList()" class="load-more"><button>Xem thêm</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Expense Table -->
+                                    <div class="tab-content-div">
+                                        <!-- Filter Form -->
+                                        <div class="filter-container">
+                                            <form [formGroup]="expenseSearchForm" (ngSubmit)="exportExpenseFile()"
+                                                class="form" action="">
+                                                <!-- Date Form -->
+                                                <div class="column">
+                                                    <div class="input-box">
+                                                        <label>From Date: </label>
+                                                        <input formControlName="fromdate" id="startdate" type="date"
+                                                            placeholder="Enter start date" required />
+                                                    </div>
+                                                    <div class="input-box">
+                                                        <label>To Date: </label>
+                                                        <input formControlName="todate" id="enddate" type="date"
+                                                            placeholder="Enter end date" required />
+                                                    </div>
+                                                </div>
+                                                <div class="button-form expesne-button-form">
+                                                    <button type="submit" class="download expense-download">Xuất
+                                                        Excel</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <div class="table-container">
+                                            <div class="add-expense-container">
+                                                <button (click)="AddExpensePopUp()" class="add-expense-btn">Add</button>
+                                            </div>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Description</th>
+                                                        <th>Expense date</th>
+                                                        <th>Amount</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let expense of expenseList">
+                                                        <td>{{ expense.id }}</td>
+                                                        <td>{{ expense.description }}</td>
+                                                        <td>{{ expense.expenseDate }}</td>
+                                                        <td>{{ expense.amount }}</td>
+                                                        <td><button (click)="DeleteExpenseConfirmationPopUp(expense)" class="delete-expense-btn">Delete</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- <div class="load-more"><button>Xem thêm</button></div> -->
+                                    </div>
+
+                                    <!-- Rating -->
+                                    <div class="tab-content-div">
+                                        <div class="rated-list">
+                                            <div *ngFor="let rate of ratingList" class="rated-box">
+                                                <div class="box-top">
+                                                    <div class="profile">
+                                                        <div class="profile-image">
+                                                            <img src={{rate.donorAva}} alt="">
+                                                        </div>
+                                                        <div class="name-user">
+                                                            <strong>{{rate.donorName}}</strong>
+                                                            <span>{{rate.ratedDate}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="reviews">
+                                                        <i class='bi bi-star-fill star'></i>
+                                                        <i *ngIf="2 > rate.rate" class='bi bi-star star'></i>
+                                                        <i *ngIf="rate.rate > 2 || rate.rate == 2"
+                                                            class='bi bi-star-fill star'></i>
+                                                        <i *ngIf="3 > rate.rate" class='bi bi-star star'></i>
+                                                        <i *ngIf="rate.rate > 3 || rate.rate == 3"
+                                                            class='bi bi-star-fill star'></i>
+                                                        <i *ngIf="4 > rate.rate" class='bi bi-star star'></i>
+                                                        <i *ngIf="rate.rate > 4 || rate.rate == 4"
+                                                            class='bi bi-star-fill star'></i>
+                                                        <i *ngIf="5 > rate.rate" class='bi bi-star star'></i>
+                                                        <i *ngIf="rate.rate > 5 || rate.rate == 5"
+                                                            class='bi bi-star-fill star'></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="client-comment">
+                                                    <p>{{rate.content}}</p>
+                                                </div>
+                                            </div>
+                                            <button (click)="GetRatingList()">Xem thêm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============== Add Form =============== -->
+    <section class="add-form-container" id="add-form-container">
+        <form class="form" [formGroup]="expenseForm" (ngSubmit)="AddExpenseSubmit()">
+            <div class="header">
+                <div class="title">Add Expense</div>
+                <i (click)="AddExpenseClose()" class="bi bi-x-lg"></i>
+            </div>
+            <div class="input-box">
+                <label>Description</label>
+                <input formControlName="description" type="text" placeholder="Enter description" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Amount</label>
+                    <input formControlName="amount" type="number" placeholder="Enter amount" required />
+                </div>
+                <div class="input-box">
+                    <label>Date</label>
+                    <input formControlName="expensedate" id="dob" type="date" placeholder="Enter expense date" required />
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- =============== Confirmation Popup=============== -->
+    <section id="confirmation">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-exclamation"></i>
+            <h2>Are you sure?</h2>
+            <h3>Do you want to remove it ?</h3>
+            <div class="buttons">
+                <button class="close-btn" (click)="DeleteExpenseConfirmationClose()">Cancel</button>
+                <button class="accept-btn" (click)="DeleteExpense()">OK</button>
+            </div>
+        </div>
+    </section>
+</div>

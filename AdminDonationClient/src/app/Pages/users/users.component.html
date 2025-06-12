@@ -1,0 +1,11 @@
+<div (click)="UserDropdownOpen()" class="user-dropdown">
+    <input type="text" class="text-box" readonly value="ADMIN">
+    <div class="option">
+        <div (click)="ActiveLink('ADMIN')"><i class="bi bi-person-vcard"></i> Admin</div>
+        <div (click)="ActiveLink('ORGANISER')"><i class="bi bi-people-fill"></i> Organiser</div>
+        <div (click)="ActiveLink('DONOR')"><i class="bi bi-person-heart"></i> Donor</div>
+        <div (click)="ActiveLink('RECIPIENT')"><i class="bi bi-person-heart"></i> Recipient</div>
+        <div (click)="ActiveLink('UNCENSORED')"><i class="bi bi-person-check-fill"></i> Uncensored organiser</div>
+    </div>
+</div>
+<router-outlet />

@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="container">
+        <header>
+            <i class="bi bi-shield-lock-fill"></i>
+        </header>
+        <h4>Enter OTP Code</h4>
+        <form [formGroup]="codeForm" (ngSubmit)="SignUpSubmit()">
+            <div class="input-field">
+                <input type="number" />
+                <input type="number" disabled />
+                <input type="number" disabled />
+                <input type="number" disabled />
+                <input type="number" disabled />
+                <input type="number" disabled />
+            </div>
+            <div class="announce-container">
+                <small id="announce">There are some errors occured</small>
+            </div>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</div>

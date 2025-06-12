@@ -1,0 +1,23 @@
+<div class="post-container">
+    <div *ngFor="let post of posts" class="post">
+      <h2>{{ post.contentPost }}</h2>
+      <p>{{ post.contentPost }}</p>
+      
+      <div class="post-images">
+        <img *ngFor="let img of post.images" [src]="img.imageSrc" alt="Post Image" />
+      </div>
+  
+      <div class="post-comments">
+        <h3>Comments</h3>
+        <div *ngFor="let comment of post.comments">
+          <p><strong>{{ comment.userRole }}</strong>: {{ comment.comment }}</p>
+        </div>
+      </div>
+  
+      <textarea [(ngModel)]="newComment" placeholder="Add a comment..."></textarea>
+      <button (click)="addComment(post.id)">Comment</button>
+    </div>
+  
+    <div *ngIf="loading" class="loading">Loading more posts...</div>
+  </div>
+  

@@ -1,0 +1,32 @@
+<!-- <div #mapContainer style="height: 100vh; width: 100%;"></div> -->
+
+<!-- Heatmap -->
+<div #mapContainer style="height: 100vh; width: 100%;"></div>
+
+<div class="control-container">
+  <div>
+    <div class="title">Dữ liệu Heatmap</div>
+    <!-- Chọn khoảng ngày -->
+    <label for="startDate">Từ ngày:</label>
+    <input type="date" id="startDate" [(ngModel)]="startDate" (change)="validateDateRange()" />
+  
+    <label for="endDate">Đến ngày:</label>
+    <input type="date" id="endDate" [(ngModel)]="endDate" (change)="validateDateRange()" />
+  
+    <button (click)="loadLocationsByDateRange()" [disabled]="!isDateRangeValid">
+      Tải dữ liệu
+    </button>
+  </div>
+  <div class="heatmap-controls">
+    <label for="heatmap-opacity">Adjust heatmap opacity:</label>
+    <input
+      id="heatmap-opacity"
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+      [value]="heatmapOpacity"
+      (input)="adjustHeatmapOpacity($event)"
+    />
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="profile-container">
+
+    <!-- ABOUt SECTION DESIGN -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img [src]="recipient.avaSrc" alt="avatar">
+            <span class="circle-spin"></span>
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">Sơ lược về <span>{{recipient.name}}</span></h2>
+            <div class="information">
+                <div class="text">Mã: <span>{{recipient.id}}</span></div>
+                <div class="text">Tên: <span>{{recipient.name}}</span></div>
+                <div class="text">Địa chỉ: <span>{{recipient.address}}</span></div>
+                <div class="text">Email: <span>{{recipient.email}}</span></div>
+                <div class="text">Số điện thoại: <span>{{recipient.accountId}}</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAMPAIGNS SECTION DESIGN -->
+    <section class="campaign" id="campaign">
+        <!-- =============== Search - Filter =============== -->
+        <div class="campaign-search">
+            <div action="" class="search-form">
+                <input (keydown.enter)="SearchSubmit($event)" class="search-input" type="search"
+                    placeholder="Search here ..." autocomplete="off" autocorrect="off" autocapitalize="off"
+                    spellcheck="false">
+                <i class="bi bi-search"></i>
+            </div>
+
+            <button (click)="Search()" class="filter-btn"><i class="bi bi-funnel"></i></button>
+        </div>
+
+        <div class="campaign-container">
+
+            <!-- ==================== Campaign ========================== -->
+            <div class="campaign">
+                <div *ngFor="let campaign of campaignList" class="campaign-card-group">
+                    <div class="campaign-card">
+                        <div class="campaign-card-banner">
+                            <img src={{campaign.coverSrc}} alt="" class="campaign-banner-img">
+                        </div>
+                        <div class="campaign-content-wrapper">
+                            <div class="campaign-header">
+                                <div class="campaign-time">
+                                    <i class="bi bi-stopwatch"></i>
+                                    <span>{{campaign.startDate}} - {{campaign.endDate}}</span>
+                                </div>
+                                <div class="campaign-status">
+                                    <div class="status-tag">{{campaign.status}}</div>
+                                    <div class="status-tag received-tag">{{campaign.received}}</div>
+                                </div>
+                            </div>
+                            <h3>
+                                <a routerLink="/recipient/campaign/detail/{{campaign.id}}" class="campaign-title">
+                                    {{campaign.title}}
+                                </a>
+                            </h3>
+                            <p class="campaign-text">
+                                {{campaign.target}}
+                            </p>
+                            <div class="campaign-address">
+                                <p class="campaign-text">
+                                    <span>Địa chỉ:</span> {{campaign.address}}
+                                </p>
+                            </div>
+
+                            <div class="wrapper-flex">
+                                <div class="wrapper">
+                                    <div class="user">
+                                        <div class="profile-wrapper">
+                                            <img src={{campaign.organiserAva}} alt="" width="50">
+                                        </div>
+                                        <div class="user-name">
+                                            <a href="#" class="h4">{{campaign.organiserName}}</a>
+                                            <p class="text-sm">
+                                                cùng với {{campaign.recipientName}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button (click)="GetCampaignList()" type="button" class="load-more">Load More</button>
+            </div>
+
+            <!-- =============== Search Form =============== -->
+            <section class="search-form-container" id="search-form-container">
+                <form class="form" [formGroup]="searchForm" (ngSubmit)="FilterSubmit()">
+                    <div class="header">
+                        <div class="title"></div>
+                        <i (click)="SearchClose()" class="bi bi-x-lg"></i>
+                    </div>
+                    <div class="input-box">
+                        <label>Organiser</label>
+                        <input formControlName="user" type="text" placeholder="Enter organiser id, name" required />
+                    </div>
+                    <div class="column">
+                        <div class="input-box">
+                            <label>Start Date</label>
+                            <input formControlName="startdate" id="startdate" type="date" placeholder="Enter start date"
+                                required />
+                        </div>
+                        <div class="input-box">
+                            <label>End Date</label>
+                            <input formControlName="enddate" id="enddate" type="date" placeholder="Enter end date"
+                                required />
+                        </div>
+                    </div>
+                    <div (click)="CityDropdownOpen()" class="input-box dropdown">
+                        <label>Province</label>
+                        <input type="text" class="text-box" readonly value="Tất cả">
+                        <div class="option">
+                            <div *ngFor="let province of sharedService.Provinces"
+                                (click)="ChangeProvinceSearch(province)">
+                                {{province}}</div>
+                        </div>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </div>
+    </section>
+</div>

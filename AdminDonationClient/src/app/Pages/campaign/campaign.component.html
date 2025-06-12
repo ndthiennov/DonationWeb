@@ -1,0 +1,103 @@
+<div class="outline">
+    <!-- =============== Add-Search =============== -->
+    <div class="btn-container">
+        <div action="" class="search-form">
+            <input (keydown.enter)="SearchSubmit($event)" class="search-input" type="search"
+                placeholder="Search here ..." autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false">
+            <i class="bi bi-search"></i>
+        </div>
+
+        <button (click)="Search()" class="filter-btn"><i class="bi bi-funnel"></i></button>
+    </div>
+
+    <!-- =============== Table =============== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Duration</th>
+                    <th>City</th>
+                    <th>Received Total</th>
+                    <th>Spent Total</th>
+                    <th>Organiser</th>
+                    <th>Recipient</th>
+                    <th>Received Status</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let campaign of campaignList">
+                    <td><a href="#">{{campaign.id}}</a></td>
+                    <td>{{campaign.title}}</td>
+                    <!-- <td>{{campaign.target}}</td> -->
+                    <td>{{campaign.startDate}} - {{campaign.endDate}}</td>
+                    <td>{{campaign.city}}</td>
+                    <td>{{campaign.receivedTotal}}</td>
+                    <td>{{campaign.spentTotal}}</td>
+                    <td>{{campaign.organiserId}} - {{campaign.organiserName}}</td>
+                    <td>{{campaign.recipientId}} - {{campaign.recipientName}}</td>
+                    <td class="td-received-status">
+                        <button
+                            class="received-status {{campaign.received}}">{{campaign.received}}</button>
+                    </td>
+                    <td class="td-status">
+                        <button (click)="Confirmation(campaign)"
+                            class="status {{campaign.disabled}}">{{campaign.disabled}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- =============== Load more =============== -->
+    <div class="load-more"><button (click)="GetCampaignList()">Load more...</button></div>
+
+    <!-- =============== Confirmation Popup=============== -->
+    <section id="confirmation" *ngIf="campaign">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-exclamation"></i>
+            <h2>Are you sure?</h2>
+            <h3>Do you want to {{campaignStatus}} campaign id {{campaign.id}} {{campaign.name}} ?</h3>
+            <div class="buttons">
+                <button class="close-btn" (click)="ConfirmationClose()">Cancel</button>
+                <button class="accept-btn" (click)="DisabledConfirmation()">OK</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============== Add Form =============== -->
+    <section class="search-form-container" id="search-form-container">
+        <form class="form" [formGroup]="searchForm" (ngSubmit)="FilterSubmit()">
+            <div class="header">
+                <div class="title"></div>
+                <i (click)="SearchClose()" class="bi bi-x-lg"></i>
+            </div>
+            <div class="input-box">
+                <label>Organiser</label>
+                <input formControlName="user" type="text" placeholder="Enter organiser id, name" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Start Date</label>
+                    <input formControlName="startdate" id="startdate" type="date" placeholder="Enter start date" required />
+                </div>
+                <div class="input-box">
+                    <label>End Date</label>
+                    <input formControlName="enddate" id="enddate" type="date" placeholder="Enter end date" required />
+                </div>
+            </div>
+            <div (click)="CityDropdownOpen()" class="input-box dropdown">
+                <label>Province</label>
+                <input type="text" class="text-box" readonly value="Tất cả">
+                <div class="option">
+                    <div *ngFor="let province of sharedService.Provinces" (click)="ChangeProvinceSearch(province)">{{province}}</div>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</div>

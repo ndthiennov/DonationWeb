@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form action="#" class="sign-in-form" [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
+                <h2 class="title">Sign In</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input formControlName="phonenum" type="text" placeholder="Phone number" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" onfocus="this.placeholder=''"
+                        onblur="this.placeholder='Phone number'" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input formControlName="password" type="password" placeholder="Password" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" onfocus="this.placeholder=''"
+                        onblur="this.placeholder='Password'" />
+                </div>
+                <div class="announce-container">
+                    <small id="announce">There are some errors occured</small>
+                </div>
+                <input type="submit" value="Login" class="btn solid" />
+            </form>
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <div class="logo-container">
+                    <img src="Logo.PNG" class="logo" alt="">
+                    <div class="logo-name">
+                        <p>D</p>
+                        <p>O</p>
+                        <p>N</p>
+                        <p>A</p>
+                    </div>
+                </div>
+                <h4>Welcom to Admin Donation</h4>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                    ex ratione. Aliquid!
+                </p>
+            </div>
+            <img src="login.svg" class="image" alt="" />
+        </div>
+    </div>
+</div>

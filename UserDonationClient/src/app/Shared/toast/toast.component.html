@@ -1,0 +1,14 @@
+<div class="toast-container" id="toast-container">
+    <div class="toast-content">
+        <i class="bi bi-check-lg success" id="toast-success"></i>
+        <i class="bi bi-exclamation-triangle-fill error" id="toast-error"></i>
+
+        <div class="message">
+            <span class="text text-1" id="toast-title">Success</span>
+            <span class="text text-2" id="toast-body">Your changes have been saved</span>
+        </div>
+    </div>
+    <i (click)="Close()" class="bi bi-x-lg close" id="close"></i>
+
+    <div class="progress" id="progress"></div>
+</div>

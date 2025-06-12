@@ -1,0 +1,114 @@
+<div class="profile-container">
+
+    <!-- HOME SECTION DESIGN -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Xin chào, Chúng tôi là <span>{{organiser.name}}</span></h1>
+            <div class="text-animate-container">
+                <div class="text-animate">
+                    <h3>DONA Organiser</h3>
+                </div>
+            </div>
+            <p>{{organiser.description}}</p>
+            <!-- <div class="btn-box">
+                <a href="#" class="btn">Get Started</a>
+            </div> -->
+        </div>
+
+        <div class="home-img">
+            <img [src]="organiser.certificationSrc" alt="certification">
+        </div>
+        <div class="home-imghover"></div>
+    </section>
+
+    <!-- ABOUt SECTION DESIGN -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img [src]="organiser.avaSrc" alt="avatar">
+            <span class="circle-spin"></span>
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">Sơ lược về <span>{{organiser.name}}</span></h2>
+            <div class="information">
+                <div class="text">Mã tổ chức: <span>{{organiser.id}}</span></div>
+                <div class="text">Tên: <span>{{organiser.name}}</span></div>
+                <div class="text">Ngày thành lập: <span>{{organiser.dob}}</span></div>
+                <div class="text">Địa chỉ: <span>{{organiser.address}}</span></div>
+                <div class="text">Email: <span>{{organiser.email}}</span></div>
+                <div class="text">Số điện thoại: <span>{{organiser.accountId}}</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAMPAIGNS SECTION DESIGN -->
+    <section class="campaign" id="campaign">
+        <h2 class="heading">Our <span>Campaigns</span></h2>
+
+        <!-- =============== Search - Filter =============== -->
+        <div class="campaign-search">
+            <div action="" class="search-form">
+                <input (keydown.enter)="SearchSubmit($event)" class="search-input" type="search"
+                    placeholder="Search here ..." autocomplete="off" autocorrect="off" autocapitalize="off"
+                    spellcheck="false">
+                <i class="bi bi-search"></i>
+            </div>
+
+            <button (click)="Search()" class="filter-btn"><i class="bi bi-funnel"></i></button>
+            <button (click)="AddCampaign()" class="filter-btn">Add</button>
+        </div>
+
+        <div class="campaign-container">
+            <ul>
+                <li *ngFor="let campaign of campaignList" class="{{campaign.disabled}}">
+                    <h3 class="title">{{campaign.title}}</h3>
+                    <p class="side-info"><span>Thời gian: {{campaign.startDate}} -
+                            {{campaign.endDate}}</span><span>{{campaign.status}}</span><span>{{campaign.received}}</span>
+                    </p>
+                    <p>{{campaign.target}}</p>
+                    <p>Địa chỉ: {{campaign.address}}</p>
+                    <p class="tag-name">cùng với {{campaign.userName}}</p>
+                    <a routerLink="/organiser/campaign/detail/{{campaign.id}}">Xem chi tiết ></a>
+                    <span class="circle"></span>
+                    <span class="date">{{campaign.createdDate}}</span>
+                </li>
+            </ul>
+
+            <a type="button" (click)="GetCampaignList()" class="show-more">Xem thêm</a>
+        </div>
+    </section>
+
+    <!-- =============== Search Form =============== -->
+    <section class="search-form-container" id="search-form-container">
+        <form class="form" [formGroup]="searchForm" (ngSubmit)="FilterSubmit()">
+            <div class="header">
+                <div class="title"></div>
+                <i (click)="SearchClose()" class="bi bi-x-lg"></i>
+            </div>
+            <div class="input-box">
+                <label>Recipient</label>
+                <input formControlName="user" type="text" placeholder="Enter recipient id, name" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Start Date</label>
+                    <input formControlName="startdate" id="startdate" type="date" placeholder="Enter start date"
+                        required />
+                </div>
+                <div class="input-box">
+                    <label>End Date</label>
+                    <input formControlName="enddate" id="enddate" type="date" placeholder="Enter end date" required />
+                </div>
+            </div>
+            <div (click)="CityDropdownOpen()" class="input-box dropdown">
+                <label>Province</label>
+                <input type="text" class="text-box" readonly value="Tất cả">
+                <div class="option">
+                    <div *ngFor="let province of sharedService.Provinces" (click)="ChangeProvinceSearch(province)">
+                        {{province}}</div>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</div>

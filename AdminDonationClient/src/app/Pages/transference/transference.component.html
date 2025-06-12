@@ -1,0 +1,55 @@
+<!-- <div class="transfer-container">
+    <h2 *ngIf="isCreateMode">Create Transfer</h2>
+    <h2 *ngIf="!isCreateMode">Edit Transfer</h2>
+  
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+      <label for="description">Description:</label>
+      <input id="description" formControlName="description" type="text" required />
+  
+      <label for="transDate">Transaction Date:</label>
+      <input id="transDate" formControlName="transDate" type="date" required />
+  
+      <label for="amount">Amount:</label>
+      <input id="amount" formControlName="amount" type="number" required />
+  
+      <label for="campaign">Campaign:</label>
+      <select id="campaign" formControlName="campaignId" required>
+        <option *ngFor="let campaign of campaigns" [value]="campaign.id">
+          {{ campaign.name }}
+        </option>
+      </select>
+  
+      <button type="submit">{{ isCreateMode ? 'Create' : 'Save' }}</button>
+    </form>
+  </div>
+  
+  <div class="transfer-list">
+    <h2>Transfer List</h2>
+  
+    <input type="number" placeholder="Search by Campaign ID" [(ngModel)]="searchCampaignId" />
+    <button (click)="searchTransfers()">Search</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Transaction Date</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transfer of transfers">
+          <td>{{ transfer.description }}</td>
+          <td>{{ transfer.transDate }}</td>
+          <td>{{ transfer.amount }}</td>
+          <td>
+            <button (click)="editTransfer(transfer.id)">Edit</button>
+            <button (click)="deleteTransfer(transfer.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>   -->

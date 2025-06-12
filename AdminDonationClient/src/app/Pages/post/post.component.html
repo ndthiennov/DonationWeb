@@ -1,0 +1,50 @@
+<!-- <div class="post-container">
+    <h2 *ngIf="isCreateMode">Create Post</h2>
+    <h2 *ngIf="!isCreateMode">Edit Post</h2>
+  
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <label for="title">Title:</label>
+      <input id="title" formControlName="title" type="text" required />
+  
+      <label for="content">Content:</label>
+      <textarea id="content" formControlName="content" required></textarea>
+  
+      <label for="postDate">Post Date:</label>
+      <input id="postDate" formControlName="postDate" type="date" required />
+  
+      <label for="images">Upload Images:</label>
+      <input id="images" type="file" (change)="onFileSelect($event)" multiple />
+  
+      <button type="submit">{{ isCreateMode ? 'Create' : 'Save' }}</button>
+    </form>
+  </div>
+  
+  <div class="post-list">
+    <h2>Post List</h2>
+  
+    <input type="date" [(ngModel)]="startDate" />
+    <input type="date" [(ngModel)]="endDate" />
+    <button (click)="searchPosts()">Search</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Post Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td>{{ post.title }}</td>
+          <td>{{ post.postDate }}</td>
+          <td>
+            <button (click)="editPost(post.id)">Edit</button>
+            <button (click)="deletePost(post.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>  -->

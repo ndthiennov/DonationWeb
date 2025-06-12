@@ -1,0 +1,91 @@
+<div class="my-5" >
+    <div class="p-5 page" size="A4">
+        <!-- ==================== Input Donation Value ==================== -->
+        <section class="donation-value">
+            <div class="value">
+                <h4>Enter your donation</h4>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input (change)="EnterTotal($event)" type="number" class="form-control shadow-none" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">VND</span>
+                  </div>
+            </div>
+        </section>
+
+        <!-- ==================== Payment Method ==================== -->
+        <section class="balance-info">
+            <div class="balance-container">
+                <div class="title">
+                    <h4>Select a <span style="color: #ef6767">Payment</span> method</h4>
+                </div>
+        
+                <form action="#">
+                    <input type="radio" name="payment" id="vnpay">
+                    <input type="radio" name="payment" id="zalopay">
+        
+                    <div class="category">
+                        <label (click)="PaymentMethod('vnpay')" for="vnpay" class="VnPayMethod">
+                            <div class="imgName">
+                                <div class="imgContainer vnpay">
+                                    <img src="https://res.cloudinary.com/ndthiencloudinary/image/upload/v1733320811/Icon_VNPAY-QR_yyryng.png" alt="">
+                                </div>
+                                <span class="name">VNPAY</span>
+                            </div>
+                            <span class="check"><i class="fa-solid fa-circle-check" style="color: #6064b6;"></i></span>
+                        </label>
+        
+                        <label (click)="PaymentMethod('zalopay')" for="zalopay" class="ZaloPayMethod">
+                            <div class="imgName">
+                                <div class="imgContainer zalopay">
+                                    <img src="https://res.cloudinary.com/ndthiencloudinary/image/upload/v1733320879/Logo_ZaloPay_Square_gopnh7.png" alt="">
+                                </div>
+                                <span class="name">ZALOPAY</span>
+                            </div>
+                            <span class="check"><i class="fa-solid fa-circle-check" style="color: #6064b6;"></i></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ==================== Payment Bill ==================== -->
+        <!-- ---------- Top Section ---------- -->
+        <section class="top-content bb d-flex justify-content-between">
+            <div class="logo">
+                <img src="logo.png" alt="" class="img-fluid">
+                Your Donation
+            </div>
+        </section>
+
+        <!-- ---------- Campaign Section ---------- -->
+        <section class="campaign-user mt-5">
+            <div class="col-10">
+                <div class="row bb pb-3">
+                    <div class="col-7">
+                        <p>Campaign</p>
+                        <h4>{{campaign.title}}</h4>
+                        <p class="address"> {{campaign.address}} </p>
+                    </div>
+                    <div class="col-5">
+                        <p>Organiser</p>
+                        <h4>{{campaign.organiserName}}</h4>
+                    </div>
+                </div>
+                <div class="row extra-info pt-3">
+                    <div class="col-7">
+                        <p>Payment Method: <span id="payment-method"></span></p>
+                        <p>Total: <span id="total">0</span> <span> vnd</span></p>
+                    </div>
+                    <div class="col-5">
+                        <p>Deliver Date: <span>{{date}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================== Payment Btn ==================== -->
+        <div class="pay-btn">
+            <button (click)="Payment()" class="payment">Pay</button>
+        </div>
+    </div>
+</div>

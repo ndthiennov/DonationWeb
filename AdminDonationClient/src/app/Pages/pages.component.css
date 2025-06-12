@@ -1,0 +1,253 @@
+
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+/* =============== Globals ============== */
+.pages-body {
+    position: relative;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.pages-container {
+    position: relative;
+    width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active {
+    width: 100px;
+}
+
+.navigation.active .title{
+    opacity: 0;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:not(:first-child):hover,
+.navigation ul li:not(:first-child).hovered {
+    background-color: #e5e7ea;
+}
+
+.navigation ul li:nth-child(1) {
+    margin-bottom: 40px;
+}
+
+.navigation ul li a {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-left: 10px;
+    color: #676a7f;
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+    color: #1d3762;
+}
+
+.navigation ul li a img{
+    width: 35px;
+    height: 35px;
+}
+
+.navigation ul li a .icon {
+    font-size: 1.75rem;
+    pointer-events: none;
+}
+
+.navigation ul li a .logo-title{
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #1d3762;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:not(:first-child):hover a::before,
+.navigation ul li:not(:first-child).hovered a::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px #e5e7ea;
+    pointer-events: none;
+}
+
+.navigation ul li:not(:first-child):hover a::after,
+.navigation ul li:not(:first-child).hovered a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px #e5e7ea;
+    pointer-events: none;
+}
+
+/* ===================== Main Container ===================== */
+.main-container {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: #e5e7ea;
+    transition: 0.5s;
+}
+
+.main-container.active {
+    width: calc(100% - 100px);
+    left: 100px;
+}
+
+/* --------- Header ---------- */
+.topbar {
+    position: fixed;
+    width: calc(100% - 300px);
+    height: 60px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: #e5e7ea;
+    z-index: 10000;
+}
+
+.main-container.active .topbar{
+    width: calc(100% - 100px);
+}
+
+.toggle i{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.user{
+    color: #1d3762;
+}
+
+.main{
+    margin-top: 60px;
+    padding: 0 20px;
+}
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+    .navigation {
+        left: -300px;
+    }
+
+    .navigation.active {
+        width: 300px;
+        left: 0;
+    }
+
+    .navigation.active .title{
+        opacity: 1;
+    }
+
+    .main-container {
+        width: 100%;
+        left: 0;
+    }
+
+    .topbar{
+        width: 100%;
+    }
+
+    .main-container.active {
+        left: 300px;
+    }
+
+    .main-container.active .topbar,
+    .main-container.active .main{
+        width: calc(100% - 300px);
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+    .user {
+        min-width: 40px;
+    }
+
+    .navigation {
+        width: 100%;
+        left: -100%;
+        z-index: 1000;
+    }
+
+    .navigation.active {
+        width: 100%;
+        left: 0;
+    }
+
+    .navigation.active .title{
+        opacity: 1;
+    }
+
+    .toggle {
+        z-index: 10001;
+    }
+
+    .main-container.active .toggle {
+        color: #fff;
+        position: fixed;
+        right: 0;
+        left: initial;
+    }
+}

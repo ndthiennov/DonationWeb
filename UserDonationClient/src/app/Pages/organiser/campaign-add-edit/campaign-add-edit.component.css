@@ -1,0 +1,294 @@
+
+.outline{
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* display: grid;
+    grid-template-columns: 2fr 1fr; */
+    min-height: 100vh;
+    width: 100%;
+    padding: 10rem 9% 2rem;
+    background-color: #10336b;
+}
+
+/* =============== Add Form =============== */
+
+#add-form-container {
+    /* position: fixed; */
+    height: 100%;
+    width: 100%;
+    /* z-index: 99999; */
+}
+
+#add-form-container .form {
+    /* position: fixed;
+    left: 50%;
+    top: 50%;
+    max-width: 700px;
+    max-height: 600px; */
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: all 0.3s ease;
+    overflow: auto;
+}
+
+#add-form-container .form .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#add-form-container .form .header .title {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+#add-form-container .form .header i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#add-form-container .form .header i:hover {
+    color: #10336b;
+}
+
+#add-form-container .form .input-box {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#add-form-container .input-box label {
+    color: #333;
+}
+
+#add-form-container .form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+#add-form-container .input-box input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+#add-form-container .form .column {
+    display: flex;
+    column-gap: 15px;
+}
+
+#add-form-container .certification-box{
+    margin-top: 20px;
+}
+#add-form-container .certification-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+#add-form-container .certification-box img{
+    max-width: 5rem;
+    max-height: 5rem;
+    margin-left: 1rem;
+}
+#add-form-container .certification-box input{
+    display: none;
+}
+#add-form-container .certification-box button{
+    border: none;
+    font-size: 2rem;
+    color: #10336b;
+    background: none;
+}
+
+#add-form-container .form .gender-box {
+    margin-top: 20px;
+}
+
+#add-form-container .gender-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+#add-form-container .form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+#add-form-container .form .gender {
+    column-gap: 5px;
+}
+
+#add-form-container .gender input {
+    accent-color: #1d3762;
+}
+
+#add-form-container .form :where(.gender input, .gender label) {
+    cursor: pointer;
+}
+
+#add-form-container .gender label {
+    color: #707070;
+}
+
+#add-form-container .form .disabled-box {
+    margin-top: 20px;
+}
+
+#add-form-container .disabled-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+#add-form-container .form :where(.disabled-option, .disabled) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+#add-form-container .form .disabled {
+    column-gap: 5px;
+}
+
+#add-form-container .disabled input {
+    accent-color: #1d3762;
+}
+
+#add-form-container .form :where(.disabled input, .disabled label) {
+    cursor: pointer;
+}
+
+#add-form-container .disabled label {
+    color: #707070;
+}
+
+#add-form-container .form .submit-btn {
+    height: 55px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #1d3762;
+}
+
+#add-form-container .form .submit-btn:hover {
+    background: #0f2343;
+}
+
+
+/* --------- Drop-down---------- */
+.dropdown{
+    position: relative;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    width: 300px;height: 50px;
+    z-index: 999;
+}
+
+.dropdown::before{
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 1000;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #333;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(-45deg);
+    transition: all .5s;
+    pointer-events: none;
+}
+
+.dropdown.active::before{
+    top: 22px;
+    transform: rotate(-225deg);
+}
+
+.dropdown input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.dropdown .option{
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow-y: scroll;
+    height: 200px;
+    display: none;
+}
+
+.dropdown.active .option{
+    display: block;
+}
+
+.dropdown .option div{
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.dropdown .option div:hover{
+    background: #b3d4e5;
+    color: #fff;
+}
+
+.dropdown .option div i{
+    position: relative;
+    font-size: 1.2em;
+
+}
+
+/* =============== Responsive =============== */
+@media screen and (max-width: 500px) {
+    #add-form-container .form .column {
+        flex-wrap: wrap;
+    }
+
+    #add-form-container .form :where(.gender-option, .gender) {
+        row-gap: 15px;
+    }
+}

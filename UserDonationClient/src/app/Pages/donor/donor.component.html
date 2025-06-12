@@ -1,0 +1,97 @@
+<div class="body">
+
+    <!-- ==================== Header =================== -->
+    <div class="header-wrapper">
+        <div class="navbar">
+            <!-- -------------------- Logo -------------------- -->
+            <div class="navbar_left">
+                <div class="logo">
+                    <a href="#">
+                        <img src="logo.png" alt="profile_pic">
+                        <div class="logo-name"><span>D</span><span>O</span><span>N</span><span>A</span></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- -------------------- Topic -------------------- -->
+            <div class="navbar_center">
+                <div class="topic">
+                    <a (click)="ActiveTopic($event)" class="topic-icon first-topic-icon" routerLink="/campaign">
+                        <i class="bi bi-house-fill"></i>
+                    </a>
+                    <a (click)="ActiveTopic($event)" class="topic-icon" routerLink="/post">
+                        <i class="bi bi-layout-text-window icon"></i>
+                    </a>
+                    <a (click)="ActiveTopic($event)" class="topic-icon" routerLink="/map">
+                        <i class="bi bi-map icon"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- -------------------- Notificatio & Profile -------------------- -->
+            <div class="navbar_right">
+
+                <!-- -------------------- Notification -------------------- -->
+                <div class="notifications" *ngIf="Loggedin()">
+                    <div class="icon_wrap" id="bell_noti" (click)="NotificationOpen()" current-count="0"><i class="bi bi-bell-fill"></i></div>
+
+                    <div class="notification_dd">
+                        <ul class="notification_ul">
+                            <li *ngFor="let noti of notiList" class="starbucks success">
+                                <!-- <div class="notify_icon">
+                                    <img src="https://res.cloudinary.com/ndthiencloudinary/image/upload/v1727682476/cld-sample.jpg" class="icon" alt="">
+                                    <span class="icon"></span>
+                                </div> -->
+                                <div class="notify_data">
+                                    <div class="title">
+                                        {{noti.notificationTitle}}
+                                    </div>
+                                    <div class="sub_title">
+                                        {{noti.notificationText}}
+                                    </div>
+                                    <div class="sub_title_date">
+                                        {{noti.notificationDate}}
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li (click)="GetNotification()" class="show-more">
+                                <p class="link">Show more</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- -------------------- Profile -------------------- -->
+                <div class="profile" *ngIf="Loggedin()">
+                    <div class="icon_wrap" (click)="ProfileOpen()">
+                        <img [src]="userava"
+                            alt="profile_pic">
+                        <span class="name">{{username}}</span>
+                        <i class="bi bi-chevron-compact-down"></i>
+                    </div>
+
+                    <div class="profile_dd">
+                        <ul class="profile_ul">
+                            <li class="profile_li"><a class="profile" href="#"><span class="picon"><i
+                                            class="bi bi-person-fill"></i>
+                                    </span>Profile</a>
+                            </li>
+                            <li><a class="logout" type="button" (click)="Logout()"><span class="picon"><i
+                                            class="bi bi-box-arrow-right"></i></span>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="profile" *ngIf="!Loggedin()">
+                    <a class="not-loggedin" routerLink="/auth/donor">Join With Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Main =================== -->
+    <div class="main-wrapper">
+        <router-outlet />
+    </div>
+</div>

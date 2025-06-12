@@ -1,0 +1,67 @@
+<div class="body">
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form enctype="multipart/form-data" [formGroup]="signUpForm" (ngSubmit)="SendOtp()">
+                <h1>Create Account</h1>
+                <div class="input-box">
+                    <input formControlName="name" type="text" placeholder="Enter full name" required />
+                </div>
+                <div class="input-box">
+                    <input formControlName="email" type="text" placeholder="Enter email address" required />
+                </div>
+                <div class="input-box">
+                    <input formControlName="phonenum" type="text" placeholder="Enter phone number" required />
+                </div>
+                <div class="input-box">
+                    <input formControlName="dob" id="dob" type="date" placeholder="Enter organiser date" required />
+                </div>
+                <div class="input-box">
+                    <input type="text" formControlName="address" placeholder="Enter address" required />
+                </div>
+                <div class="certification-box">
+                    <h3>Certification</h3>
+                    <input type="file" #fileOpen (change)="UploadImg($event)">
+                    <button type="button" (click)="fileOpen.click()">
+                        <i class="bi bi-image-fill"></i>
+                    </button>
+                    <img [src]="imagePreview" class="image-preview" alt="">
+                </div>
+                <div class="input-box">
+                    <input type="password" formControlName="password" placeholder="Enter password" required />
+                </div>
+                <div class="announce-container">
+                    <small id="announce">There are some errors occured</small>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form [formGroup]="loginForm" (ngSubmit)="LoginSubmit()">
+                <h1>Sign In</h1>
+                <input formControlName="phonenum" type="text" placeholder="Phone number">
+                <input formControlName="password" type="password" placeholder="Password">
+                <div class="announce-container">
+                    <small id="announce-sign-in">There are some errors occured</small>
+                </div>
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of donor features, or you wanna be <a
+                            href="/auth/donor">Donor</a> or <a href="/auth/recipient">Recipient</a></p>
+                    <button (click)="Login()" class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Organiser!</h1>
+                    <p>Register with your personal details to use all of donor features, or you wanna be <a
+                            href="/auth/donor">Donor</a> or <a href="/auth/recipient">Recipient</a></p>
+                    <button (click)="Register()" class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

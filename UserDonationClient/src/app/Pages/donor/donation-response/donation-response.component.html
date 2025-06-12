@@ -1,0 +1,25 @@
+<div class="donation-response-container">
+    <section class="success" *ngIf="status">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-check-circle-fill"></i>
+            <h2 class="status">Completed</h2>
+            <h3 class="body">You have sucessfully donated. Wish all the best come to you everyday</h3>
+            <div class="buttons">
+                <a class="button-link" type="button" routerLink="/">Go Home</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="failed" *ngIf="!status">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <h2 class="status">Failed</h2>
+            <h3 class="body">Your donation has failed. Please try again and forgive us for that inconvinient</h3>
+            <div class="buttons">
+                <a class="button-link" type="button" routerLink="/">Go Home</a>
+            </div>
+        </div>
+    </section>
+</div>

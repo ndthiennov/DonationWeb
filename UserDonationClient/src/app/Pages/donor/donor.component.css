@@ -1,0 +1,297 @@
+.body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==================== Header =================== */
+.header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.header-wrapper .navbar {
+    background: #fff;
+    width: 100%;
+    height: 60px;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------- Logo -------------------- */
+.header-wrapper .navbar .navbar_left .logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.header-wrapper .navbar .navbar_left .logo a img {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+}
+
+.header-wrapper .navbar .navbar_left .logo a .logo-name span {
+    color: #a3b1c1;
+    margin-right: 2px;
+}
+
+.header-wrapper .navbar .navbar_left .logo a .logo-name span:nth-child(odd) {
+    color: #11366b;
+}
+
+/* -------------------- Notification & Profile -------------------- */
+.header-wrapper .navbar .navbar_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-wrapper .navbar .navbar_right img {
+    width: 35px;
+}
+
+.header-wrapper .navbar .navbar_right .icon_wrap {
+    cursor: pointer;
+}
+
+.navbar .navbar_right .profile,
+.navbar .navbar_right .notifications {
+    position: relative;
+}
+
+.navbar .profile .profile_dd,
+.notification_dd {
+    position: absolute;
+    top: 60px;
+    right: -15px;
+    user-select: none;
+    background: #fff;
+    border: 1px solid #c7d8e2;
+    width: fit-content;
+    height: auto;
+    display: none;
+    border-radius: 10px;
+    box-shadow: 10px 10px 35px rgba(0, 0, 0, 0.125),
+        -10px -10px 35px rgba(0, 0, 0, 0.125);
+}
+
+.header-wrapper .navbar .navbar_right .icon_wrap:hover,
+.header-wrapper .navbar .navbar_right .profile.active .icon_wrap,
+.header-wrapper .navbar .navbar_right .notifications.active .icon_wrap {
+    color: #1d4f96;
+}
+
+.header-wrapper .navbar .profile.active .profile_dd,
+.header-wrapper .navbar .notifications.active .notification_dd {
+    display: block;
+}
+
+/* -------------------- Notification -------------------- */
+.header-wrapper .navbar .navbar_right .notifications {
+    margin-right: 25px;
+}
+
+.header-wrapper .navbar .navbar_right .notifications .icon_wrap {
+    cursor: pointer;
+    position: relative;
+    font-size: 22px;
+}
+
+.bell::after{
+    content: attr(current-count);
+    position: absolute;
+    top: 0px;
+    left: 55%;
+    width: 18px;
+    height: 18px;
+    background-color: #ff0080;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    /* align-items: center; */
+    /* border: 5px solid #a3b1c1; */
+    /* font-size: 22px; */
+    /* font-weight: bold; */
+    color: #fff;
+    font-size: 13px;
+}
+
+.header-wrapper .notification_dd{
+    width: 280px;
+    height: 343px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.header-wrapper .notification_dd li {
+    border-bottom: 1px solid #f1f2f4;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header-wrapper .notification_dd li .notify_icon {
+    display: flex;
+}
+
+.header-wrapper .notification_dd li .notify_icon .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.header-wrapper .notification_dd li .notify_data {
+    margin: 0 15px;
+    width: 185px;
+}
+
+.header-wrapper .notification_dd li .notify_data .title {
+    color: #000;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-wrapper .notification_dd li .notify_data .sub_title {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+}
+
+.header-wrapper .notification_dd li .notify_data .sub_title_date{
+    color: #a3b1c1;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+.header-wrapper .notification_dd li.show-more {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-wrapper .notification_dd li.show-more p {
+    font-weight: 700;
+    color: #1d4f96;
+    cursor: pointer;
+}
+
+.header-wrapper .notification_dd li.show-moreo p:hover {
+    text-decoration: underline;
+}
+
+/* -------------------- Profile -------------------- */
+.header-wrapper .navbar .navbar_right .profile .icon_wrap {
+    display: flex;
+    align-items: center;
+}
+
+.header-wrapper .navbar .navbar_right .profile .icon_wrap img {
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+}
+
+.header-wrapper .navbar .navbar_right .profile .name {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.header-wrapper .navbar .profile .profile_dd {
+    width: 225px;
+    border-radius: 15px;
+}
+
+.header-wrapper .navbar .profile .profile_dd ul {
+    padding: 0;
+    margin: 0;
+}
+
+.header-wrapper .navbar .profile .profile_dd ul li {
+    text-decoration: none;
+    list-style: none;
+    border-bottom: 1px solid #f1f2f4;
+}
+
+.header-wrapper .navbar .profile .profile_dd ul li a {
+    display: block;
+    padding: 15px 35px;
+    position: relative;
+    text-decoration: none;
+    color: #7f8db0;
+    /* background-color: #11366b; */
+}
+
+.header-wrapper .navbar .profile .profile_dd ul li a .picon {
+    display: inline-block;
+    width: 30px;
+}
+
+.header-wrapper .navbar .profile .profile_dd ul li a:hover {
+    color: #1d4f96;
+    background: #7a95bb67;
+}
+
+.not-loggedin{
+    text-decoration: none;
+    color: #8f98a3;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.not-loggedin:hover{
+    color: #11366b;
+}
+
+/* -------------------- Topic -------------------- */
+.header-wrapper .navbar .navbar_center .topic{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-wrapper .navbar .navbar_center .topic a{
+    padding: 0 5rem;
+    font-size: 1.8rem;
+    color: #8f98a3;
+    transition: all .3s;
+}
+
+.header-wrapper .navbar .navbar_center .topic a:hover{
+    color: #11366b;
+}
+
+.header-wrapper .navbar .navbar_center .topic a:active{
+    color: #8f98a3;
+}
+
+.header-wrapper .navbar .navbar_center .topic a.active{
+    color: #11366b;
+}
+
+/* ==================== Main =================== */
+.main-wrapper {
+    /* margin-top: 80px;
+    padding: 10px 50px; */
+    margin: 0;
+    padding: 0;
+}

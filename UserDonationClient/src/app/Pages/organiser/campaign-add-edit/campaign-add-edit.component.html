@@ -1,0 +1,91 @@
+<div class="outline">
+    <!-- =============== Add Form =============== -->
+    <section class="add-form-container" id="add-form-container">
+        <form enctype="multipart/form-data" class="form" [formGroup]="cuForm" (ngSubmit)="Submit()">
+            <div class="header">
+                <div class="title">Campaign</div>
+            </div>
+            <div class="input-box">
+                <label>Tiêu đề</label>
+                <input id="title" formControlName="title" type="text" placeholder="Enter title" required />
+            </div>
+            <div class="input-box">
+                <label>Mục tiêu</label>
+                <input id="target" formControlName="target" type="text" placeholder="Enter target" required />
+            </div>
+            <div class="input-box">
+                <label>Mô tả</label>
+                <input id="description" formControlName="description" type="text" placeholder="Enter description" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Start Date</label>
+                    <input formControlName="startdate" id="startdate" type="date" placeholder="Enter start date" required />
+                </div>
+                <div class="input-box">
+                    <label>End Date</label>
+                    <input formControlName="enddate" id="enddate" type="date" placeholder="Enter end date" required />
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Address</label>
+                <input id="address" type="text" formControlName="address" placeholder="Enter Address" required />
+            </div>
+            <div (click)="CityDropdownOpen()" class="input-box dropdown">
+                <label>Province</label>
+                <input id="city" type="text" class="text-box" readonly value="Tất cả">
+                <div class="option">
+                    <div *ngFor="let province of sharedService.Provinces" (click)="ChangeProvinceSearch(province)">
+                        {{province}}</div>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Chỉ tiêu</label>
+                <input id="amount-target" type="number" formControlName="targetamount" placeholder="Enter amount target" required />
+            </div>
+            <div class="input-box">
+                <label>Mã người nhận hỗ trợ</label>
+                <input id="recipientid" type="number" formControlName="recipientid" placeholder="Enter recipient id" required />
+            </div>
+            <div class="certification-box">
+                <h3>Ảnh bìa</h3>
+                <input type="file" #fileOpen (change)="UploadImg($event)">
+                <button type="button" (click)="fileOpen.click()">
+                    <i class="bi bi-image-fill"></i>
+                </button>
+                <img [src]="imagePreview" class="image-preview" alt="">
+            </div>
+            <div class="gender-box">
+                <h3>Trạng thái</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input formControlName="statuscampaignid" type="radio" id="check-male" name="gender" value="1" checked />
+                        <label for="check-male">Đang chuẩn bị</label>
+                    </div>
+                    <div class="gender">
+                        <input formControlName="statuscampaignid" type="radio" id="check-female" name="gender" value="2" />
+                        <label for="check-female">Đang tiến hành</label>
+                    </div>
+                    <div class="gender">
+                        <input formControlName="statuscampaignid" type="radio" id="check-other" name="gender" value="3" />
+                        <label for="check-other">Đã kết thúc</label>
+                    </div>
+                </div>
+            </div>
+            <div class="disabled-box">
+                <h3>Khóa chiến dịch</h3>
+                <div class="disabled-option">
+                    <div class="disabled">
+                        <input formControlName="disabled" type="radio" id="check-active" name="disabled" value="0" checked />
+                        <label for="check-active">Hoạt động</label>
+                    </div>
+                    <div class="disabled">
+                        <input formControlName="disabled" type="radio" id="check-disabled" name="disabled" value="1" />
+                        <label for="check-disabled">Ngừng hoạt động</label>
+                    </div>
+                </div>
+            </div>
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+    </section>
+</div>

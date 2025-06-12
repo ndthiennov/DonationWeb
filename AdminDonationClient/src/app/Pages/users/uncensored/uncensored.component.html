@@ -1,0 +1,68 @@
+<div class="outline">
+    <!-- =============== Add-Search =============== -->
+    <div class="btn-container">
+        <div action="" class="search-form">
+            <input (keydown.enter)="SearchSubmit($event)" class="search-input" type="search"
+                placeholder="Search here ..." autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false">
+            <i class="bi bi-search"></i>
+        </div>
+    </div>
+
+    <!-- =============== Table =============== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let uncensored of uncensoredList">
+                    <td><a href="#">{{uncensored.id}}</a></td>
+                    <td>{{uncensored.name}}</td>
+                    <td>{{uncensored.accountId}}</td>
+                    <td>{{uncensored.email}}</td>
+                    <td>{{uncensored.address}}</td>
+                    <td class="td-action">
+                        <button (click)="ViewImage(uncensored)"
+                            class="action view-image">View</button>
+                        <button (click)="Approve(uncensored)"
+                            class="action approve">Approve</button>
+                        <button (click)="Delete(uncensored)"
+                            class="action delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- =============== Load more =============== -->
+    <div class="load-more"><button (click)="GetUncensoredList()">Load more...</button></div>
+
+    <!-- =============== Confirmation Popup=============== -->
+    <section id="confirmation" *ngIf="uncensored">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-exclamation"></i>
+            <h2>Are you sure?</h2>
+            <h3>Do you want to {{actionName}} account id {{uncensored.id}} {{uncensored.name}} ?</h3>
+            <div class="buttons">
+                <button class="close-btn" (click)="ConfirmationClose()">Cancel</button>
+                <button class="accept-btn" (click)="ConfirmationAction()">OK</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============== Image Popup=============== -->
+    <div (click)="CloseImage()" id="image-popup" *ngIf="uncensored">
+        <div class="image-modal-box">
+            <img src={{uncensored.certificationSrc}} alt="">
+        </div>
+    </div>
+</div>

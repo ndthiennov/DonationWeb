@@ -1,0 +1,126 @@
+<div class="outline">
+    <!-- =============== Add-Search =============== -->
+    <div class="btn-container">
+        <div action="" class="search-form">
+            <input (keydown.enter)="SearchSubmit($event)" class="search-input" type="search"
+                placeholder="Search here ..." autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false">
+            <i class="bi bi-search"></i>
+        </div>
+
+        <button (click)="Add()" class="add-btn">Add</button>
+    </div>
+
+    <!-- =============== Table =============== -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let recipient of recipientList">
+                    <td><a href="#">{{recipient.id}}</a></td>
+                    <td>{{recipient.name}}</td>
+                    <td>{{recipient.phoneNum}}</td>
+                    <td>{{recipient.email}}</td>
+                    <td>{{recipient.address}}</td>
+                    <td class="td-status">
+                        <button (click)="Confirmation(recipient)"
+                            class="status {{recipient.disabled}}">{{recipient.disabled}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- =============== Load more =============== -->
+    <div class="load-more"><button (click)="GetRecipientList()">Load more...</button></div>
+
+    <!-- =============== Confirmation Popup=============== -->
+    <section id="confirmation" *ngIf="recipient">
+        <span class="overlay"></span>
+        <div class="modal-box">
+            <i class="bi bi-exclamation"></i>
+            <h2>Are you sure?</h2>
+            <h3>Do you want to {{recipientStatus}} account id {{recipient.id}} {{recipient.name}} ?</h3>
+            <div class="buttons">
+                <button class="close-btn" (click)="ConfirmationClose()">Cancel</button>
+                <button class="accept-btn" (click)="DisabledConfirmation()">OK</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============== Add Form =============== -->
+    <section class="add-form-container" id="add-form-container">
+        <form class="form" [formGroup]="addForm" (ngSubmit)="AddSubmit()">
+            <div class="header">
+                <div class="title">Add Recipient</div>
+                <i (click)="AddClose()" class="bi bi-x-lg"></i>
+            </div>
+            <div class="input-box">
+                <label>Full Name</label>
+                <input formControlName="name" type="text" placeholder="Enter full name" required />
+            </div>
+            <div class="input-box">
+                <label>Email Address</label>
+                <input formControlName="email" type="text" placeholder="Enter email address" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input formControlName="phonenum" type="text" placeholder="Enter phone number" required />
+                </div>
+                <div class="input-box">
+                    <label>Birth Date</label>
+                    <input formControlName="dob" id="dob" type="date" placeholder="Enter birth date" required />
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Address</label>
+                <input type="text" formControlName="address" placeholder="Enter address" required />
+            </div>
+            <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input formControlName="gender" type="radio" id="check-male" name="gender" value="Nam" checked />
+                        <label for="check-male">Nam</label>
+                    </div>
+                    <div class="gender">
+                        <input formControlName="gender" type="radio" id="check-female" name="gender" value="Nữ" />
+                        <label for="check-female">Nữ</label>
+                    </div>
+                    <div class="gender">
+                        <input formControlName="gender" type="radio" id="check-other" name="gender" value="Không xác định" />
+                        <label for="check-other">Prefer not to say</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <input type="password" formControlName="password" placeholder="Enter password" required />
+            </div>
+            <div class="disabled-box">
+                <h3>Status</h3>
+                <div class="disabled-option">
+                    <div class="disabled">
+                        <input formControlName="disabled" type="radio" id="check-active" name="disabled" value="0" checked />
+                        <label for="check-active">Active</label>
+                    </div>
+                    <div class="disabled">
+                        <input formControlName="disabled" type="radio" id="check-disabled" name="disabled" value="1" />
+                        <label for="check-disabled">Disabled</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</div>

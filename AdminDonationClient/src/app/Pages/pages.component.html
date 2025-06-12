@@ -1,0 +1,78 @@
+<div class="pages-body" id="app-body">
+
+    <!-- =============== Navigation =============== -->
+    <div class="pages-container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a routerLink="/users">
+                        <img src="Logo.PNG" alt="">
+                        <span class="title logo-title">DONA ADMIN</span>
+                    </a>
+                </li>
+
+                <li (click)="ActiveLink($event)">
+                    <a routerLink="/users">
+                        <i class="bi bi-people-fill icon"></i>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+
+                <li (click)="ActiveLink($event)">
+                    <a routerLink="/campaign">
+                        <i class="bi bi-postcard-heart icon"></i>
+                        <span class="title">Campaign</span>
+                    </a>
+                </li>
+
+                <!-- <li (click)="ActiveLink($event)">
+                    <a routerLink="/transference">
+                        <i class="bi bi-cash-coin icon"></i>
+                        <span class="title">Transferred currency</span>
+                    </a>
+                </li> -->
+
+                <li (click)="ActiveLink($event)">
+                    <a routerLink="/post">
+                        <i class="bi bi-layout-text-window icon"></i>
+                        <span class="title">Posts</span>
+                    </a>
+                </li>
+
+                <li (click)="ActiveLink($event)">
+                    <a routerLink="/map">
+                        <i class="bi bi-map icon"></i>
+                        <span class="title">Map</span>
+                    </a>
+                </li>
+
+                <li (click)="SignOut()">
+                    <a type="button">
+                        <i class="bi bi-box-arrow-right icon"></i>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- =============== Main container =============== -->
+        <div class="main-container">
+
+            <!-- =============== Header =============== -->
+            <div class="topbar" (click)="ToggleClick()">
+                <div class="toggle">
+                    <i class="bi bi-list"></i>
+                </div>
+
+                <div class="user">
+                    <h5>{{username}}</h5>
+                </div>
+            </div>
+
+            <!-- =============== Main =============== -->
+            <div class="main">
+                <router-outlet />
+            </div>
+        </div>
+    </div>
+</div>
